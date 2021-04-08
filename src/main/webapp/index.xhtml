@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Made In Ceará</title>
+</h:head>
+<h:body>
+	<h:form id="loginForm">
+		<h3>Cadastro Usuário</h3>
+		<p:tab id="personal" title="Pessoal">
+			<p:panel header="Detalhes Pessoais">
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Nome usuario:" />
+					<h:inputText value="#{homeBean.user.name}" label="Nome do usuario" />
+					<!--  -->
+					<!--  -->
+					<p:outputLabel for="dtnasc" value="Data de Nascimento:" />
+					<h:inputText id="dtnasc" value="#{homeBean.user.nascimento}"
+						label="Data de Nascimento">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
+					<!--  -->
+					<!--  -->
+					<h:outputLabel value="Telefone:" />
+					<h:inputText value="#{homeBean.phone.telefone}" />
+					<p:commandButton value="Adicionar Telefone" id="addPhone" update="@all" icon="pi pi-plus" action="#{homeBean.addPhone()}" />
+					
+					<h:outputLabel value="CPF:" />
+					<h:inputText  value="#{homeBean.document.cpf}" label="CPF"/>
+					<!--  -->
+					
+					
+					<h:outputLabel value="RG:" />
+					<h:inputText value="#{homeBean.document.rg}" label="RG"/>
+					<!--  -->
+					   
+			    </h:panelGrid>
+			</p:panel>
+		</p:tab>
+		<h3>Cadastro Endereço</h3>
+		<p:tab id="address" title="Endereço">
+			<p:panel header="Detalhes Pessoais">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Logradouro" />
+					<h:inputText value="#{homeBean.uniqueAddress.rua}" label="Nome do Logradouro" />
+					
+					<h:outputLabel value="Número" />
+					<h:inputText value="#{homeBean.uniqueAddress.numero}" label="Numero da casa" />
+					
+					<h:outputLabel value="Bairro" />
+					<h:inputText value="#{homeBean.uniqueAddress.bairro}" label="Nome do Bairro" />
+					
+					<h:outputLabel value="Cidade" />
+					<h:inputText value="#{homeBean.uniqueAddress.cidade}" label="Nome da Cidade" />
+					
+					<h:outputLabel value="Estado" />
+					<h:inputText value="#{homeBean.uniqueAddress.estado}" label="Nome do Estado" />
+					
+					<h:outputLabel value="Cep" />
+					<h:inputText value="#{homeBean.uniqueAddress.cep}" label="Numero do cep" />
+					
+					<h:outputLabel value="Pais" />
+					<h:inputText value="#{homeBean.uniqueAddress.pais}" label="Nome do País" />
+					
+			    </h:panelGrid>
+			    <p:commandButton value="Adicionar outro endereço" id="addAddress" update="@all" icon="pi pi-plus" action="#{homeBean.addAddress()}" />
+			</p:panel>
+		</p:tab>
+		 <p:commandButton id="saveBtn" value="Salvar" update="@all" icon="pi pi-check" style="margin:0" actionListener="#{homeBean.salvar()}"/>
+	</h:form>
+	
+	<h:form id="Manager">
+		
+		<h3>Gerente mysql</h3>
+		<p:tab id="Manager" title="Manager">
+			<p:panel header="Detalhes Pessoais">
+				<h:panelGrid columns="3">
+				
+					<h:outputLabel value="Excluir Usuario:" />
+					<h:inputText value="#{homeBean.idDelete}" />
+					<p:commandButton value="Excluir usuario" id="deleteUser" update="@all" icon="pi pi-plus" action="#{homeBean.excluir()}" />
+					
+					<h:outputLabel value="Carregar usuario" />
+					<h:inputText value="#{homeBean.idFind}" />
+					<p:commandButton value="Carregar usuario" id="findUser" update="@all" icon="pi pi-plus" action="#{homeBean.consultaPorID()}" />
+					
+			    </h:panelGrid>
+			   
+			</p:panel>
+		</p:tab>
+	</h:form>
+</h:body>
+</html>
